@@ -5,7 +5,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  if (req.method !== 'GET') {
+  if (req.method !== 'POST') {
     return res.status(405).end()
   }
 
@@ -20,9 +20,6 @@ export default async function handler(
     const response = await axios.post(
       `${process.env.AUTH0_ISSUER_BASE_URL}/oauth/token`,
       body,
-      {
-        headers: { 'Content-Type': 'application/json' },
-      },
     )
 
     res.json(response.data)
